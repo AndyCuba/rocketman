@@ -26,6 +26,8 @@ public class Rocket : MonoBehaviour
 
     State state = State.Alive;
 
+    bool collisionsDisabled = false;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -40,11 +42,25 @@ public class Rocket : MonoBehaviour
             RespondToThrustInput();
             RespondToRotateInput();
         }
+        if (Debug.isDebugBuild) RespondToDebugKeyes();
+
+    }
+
+    private void RespondToDebugKeyes()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) return;
+        if (state != State.Alive || collisionsDisabled) return;
 
         switch (collision.gameObject.tag)
         {
@@ -85,7 +101,12 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int scenesLength = SceneManager.sceneCountInBuildSettings;
+
+        int nextSceneIndex = currentSceneIndex + 1 == scenesLength ? 0 : currentSceneIndex + 1;
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private void RespondToThrustInput()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3016554023352802899}
   - component: {fileID: 8009266080274245208}
   - component: {fileID: 7266966155872220025}
+  - component: {fileID: 6840682098040899055}
   m_Layer: 0
   m_Name: Landing Pad
   m_TagString: Finish
@@ -95,3 +96,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6840682098040899055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768452613479193332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26593b58ee5d3d243aa66ae74f5df1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 10, y: 0, z: 0}
+  period: 0
